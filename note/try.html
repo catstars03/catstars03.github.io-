@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>笔记卡片展示</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px 0;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #6c757d;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .notes-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .note-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border-left: 5px solid #3498db;
+        }
+        
+        .note-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .note-header {
+            background: #f8f9fa;
+            padding: 20px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .note-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+        
+        .note-subtitle {
+            font-size: 1.1rem;
+            color: #3498db;
+            font-weight: 600;
+        }
+        
+        .note-content {
+            padding: 20px;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #495057;
+        }
+        
+        .note-footer {
+            padding: 15px 20px;
+            background: #f8f9fa;
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid #e9ecef;
+            font-size: 0.95rem;
+            color: #6c757d;
+        }
+        
+        .note-category {
+            background: rgba(52, 152, 219, 0.1);
+            color: #3498db;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+        
+        .info-section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            margin-top: 30px;
+            text-align: center;
+        }
+        
+        .info-title {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        
+        .info-content {
+            font-size: 1.1rem;
+            color: #6c757d;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+        
+        .highlight {
+            background: linear-gradient(120deg, rgba(86, 204, 242, 0.3) 0%, rgba(47, 128, 237, 0.3) 100%);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            color: #6c757d;
+            font-size: 0.95rem;
+            margin-top: 40px;
+            border-top: 1px solid #e9ecef;
+        }
+        
+        @media (max-width: 768px) {
+            .notes-container {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="notes-container" id="notesContainer">
+            <!-- 笔记卡片将由JavaScript动态生成 -->
+        </div>
+    </div>
+    <script>
+        // 笔记数据
+        
+       
+        // 渲染笔记卡片
+        function renderNotes() {
+            const container = document.getElementById('notesContainer');
+            let html = '';
+            
+            notes.forEach(note => {
+                html += `
+
+
+        <div class="resume-item d-flex flex-column flex-md-row mb-5">
+            
+            <div class="resume-content mr-auto">
+              <h3 class="mb-0">${note.title}</h3>
+              <div class="subheading mb-3">${note.subtitle}</div>
+              <div class="subheading mb-3">${note.category}</div>
+              <p>${note.content}</p>
+            </div>
+            <div class="resume-date text-md-right">
+              <span class="text-primary">${note.date}</span>
+            </div>
+          </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+        
+        // 页面加载完成后渲染笔记
+        const notes = [
+            {
+                id: 1,
+                title: "JavaScript 闭包原理",
+                subtitle: "核心概念与应用场景",
+                content: "闭包是指有权访问另一个函数作用域中变量的函数。创建闭包的常见方式是在一个函数内部创建另一个函数。闭包的作用是可以读取函数内部的变量，让这些变量的值始终保持在内存中。",
+                category: "编程",
+                date: "2023-10-15",
+                site: "王教授"
+            },
+            {
+                id: 2,
+                title: "CSS 布局系统",
+                subtitle: "Flexbox 与 Grid 深入解析",
+                content: "Flexbox 是一维布局模型，适合局部布局设计。Grid 是二维布局系统，适合整体页面布局。两者可以结合使用，Flexbox 用于组件内部布局，Grid 用于页面整体结构布局。",
+                category: "前端开发",
+                date: "2023-10-10",
+                site: "李设计师"
+            }
+        ];
+        document.addEventListener('DOMContentLoaded', renderNotes);
+    </script>
+     <div class="note-footer"></div>
+</body>
+</html>
