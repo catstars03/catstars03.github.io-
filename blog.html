@@ -22,103 +22,45 @@
   <!-- Custom styles for this template -->
   <link href="css/resume.css" rel="stylesheet">
   
-  <!-- Markdown 样式 -->
+  <!-- Download page styles -->
   <style>
-    .markdown-content {
+    .download-content {
       line-height: 1.8;
     }
     
-    .markdown-content h1,
-    .markdown-content h2,
-    .markdown-content h3,
-    .markdown-content h4,
-    .markdown-content h5,
-    .markdown-content h6 {
+    .download-content h1,
+    .download-content h2,
+    .download-content h3,
+    .download-content h4,
+    .download-content h5,
+    .download-content h6 {
       margin-top: 1.5rem;
       margin-bottom: 1rem;
       color: #000000;
     }
     
-    .markdown-content h1 {
+    .download-content h1 {
       font-size: 2rem;
       border-bottom: 2px solid #dee2e6;
       padding-bottom: 0.5rem;
     }
     
-    .markdown-content h2 {
+    .download-content h2 {
       font-size: 1.75rem;
       border-bottom: 1px solid #dee2e6;
       padding-bottom: 0.3rem;
     }
     
-    .markdown-content h3 {
+    .download-content h3 {
       font-size: 1.5rem;
     }
     
-    .markdown-content p {
+    .download-content p {
       margin-bottom: 1rem;
     }
     
-    .markdown-content ul,
-    .markdown-content ol {
-      margin-bottom: 1rem;
-      padding-left: 2rem;
-    }
-    
-    .markdown-content li {
-      margin-bottom: 0.5rem;
-    }
-    
-    .markdown-content code {
-      background-color: #f8f9fa;
-      padding: 0.2rem 0.4rem;
-      border-radius: 0.25rem;
-      font-size: 85%;
-      color: #e83e8c;
-    }
-    
-    .markdown-content pre {
-      background-color: #f8f9fa;
-      padding: 1rem;
-      border-radius: 0.25rem;
-      overflow-x: auto;
-      margin-bottom: 1rem;
-    }
-    
-    .markdown-content pre code {
-      background-color: transparent;
-      color: inherit;
-      padding: 0;
-    }
-    
-    .markdown-content blockquote {
-      border-left: 4px solid #007bff;
-      padding: 0.5rem 1rem;
-      margin-bottom: 1rem;
-      background-color: #f8f9fa;
-    }
-    
-    .markdown-content img {
-      max-width: 100%;
-      height: auto;
-      margin: 1rem 0;
-    }
-    
-    .markdown-content table {
-      width: 100%;
-      margin-bottom: 1rem;
-      border-collapse: collapse;
-    }
-    
-    .markdown-content table th,
-    .markdown-content table td {
-      padding: 0.75rem;
-      vertical-align: top;
-      border: 1px solid #dee2e6;
-    }
-    
-    .markdown-content table th {
-      background-color: #f8f9fa;
+    .download-content .alert {
+      margin-top: 1rem;
     }
     
     .back-link {
@@ -128,6 +70,10 @@
     .loading {
       text-align: center;
       padding: 2rem;
+    }
+    
+    .download-btn {
+      margin: 1rem 0;
     }
   </style>
 </head>
@@ -189,9 +135,9 @@
             <div class="spinner-border text-primary" role="status">
               <span class="sr-only">加载中...</span>
             </div>
-            <p class="mt-2">正在加载博客内容...</p>
+            <p class="mt-2">正在准备下载...</p>
           </div>
-          <div class="markdown-content d-none" id="blog-markdown-content"></div>
+          <div class="download-content d-none" id="blog-download-content"></div>
         </div>
       </div>
     </section>
@@ -207,19 +153,7 @@
   <!-- Custom scripts for this template -->
   <script src="js/resume.min.js"></script>
   
-  <!-- Markdown 解析器 -->
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  
   <script>
-    // 配置 marked
-    marked.setOptions({
-      highlight: function(code, lang) {
-        return code;
-      },
-      breaks: true,
-      gfm: true
-    });
-    
     // 获取URL参数
     function getUrlParameter(name) {
       name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
@@ -228,8 +162,8 @@
       return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
     }
     
-    // 渲染博客内容
-    function renderBlogContent() {
+    // 渲染下载页面
+    function renderDownloadPage() {
       const fileName = getUrlParameter('file');
       const title = getUrlParameter('title') || '博客文章';
       const subtitle = getUrlParameter('subtitle') || '';
@@ -249,36 +183,46 @@
         return;
       }
       
-      // 加载并解析 Markdown 文件
-      const xhr = new XMLHttpRequest();
-      xhr.open('GET', `blogs/${fileName}`, true);
-      xhr.onreadystatechange = function() {
-        if (xhr.readyState === 4) {
-          if (xhr.status === 200) {
-            // 隐藏加载指示器，显示内容
-            document.getElementById('loading-indicator').classList.add('d-none');
-            const contentElement = document.getElementById('blog-markdown-content');
-            contentElement.classList.remove('d-none');
-            
-            // 解析 Markdown 内容
-            const htmlContent = marked.parse(xhr.responseText);
-            contentElement.innerHTML = htmlContent;
-          } else {
-            document.getElementById('loading-indicator').innerHTML = 
-              `<div class="alert alert-danger" role="alert">
-                <h4 class="alert-heading">加载失败</h4>
-                <p>无法加载博客内容: ${xhr.status} ${xhr.statusText}</p>
-                <hr>
-                <p class="mb-0">请确保文件 "blogs/${fileName}" 存在且可以通过服务器访问。</p>
-              </div>`;
-          }
-        }
-      };
-      xhr.send();
+      // 隐藏加载指示器，显示下载内容
+      document.getElementById('loading-indicator').classList.add('d-none');
+      const contentElement = document.getElementById('blog-download-content');
+      contentElement.classList.remove('d-none');
+      
+      // 显示下载内容
+      contentElement.innerHTML = `
+        <div class="download-section">
+          <h2>下载 Markdown 文件</h2>
+          <p>您即将下载的文件信息：</p>
+          <ul>
+            <li><strong>文件名:</strong> ${fileName}</li>
+            <li><strong>标题:</strong> ${title}</li>
+            <li><strong>分类:</strong> ${category || '无分类'}</li>
+            <li><strong>发布日期:</strong> ${date || '无日期'}</li>
+          </ul>
+          
+          <div class="download-btn">
+            <a href="blogs/${fileName}" download="${fileName}" class="btn btn-primary btn-lg">
+              <i class="fas fa-download"></i> 点击下载 Markdown 文件
+            </a>
+          </div>
+          
+          <div class="alert alert-info" role="alert">
+            <h4 class="alert-heading">提示</h4>
+            <p>下载完成后，您可以使用支持 Markdown 格式的编辑器打开文件进行阅读，例如：</p>
+            <ul>
+              <li>Typora</li>
+              <li>VS Code</li>
+              <li>Atom</li>
+              <li>Mark Text</li>
+              <li>其他 Markdown 编辑器</li>
+            </ul>
+          </div>
+        </div>
+      `;
     }
     
-    // 页面加载完成后渲染博客内容
-    document.addEventListener('DOMContentLoaded', renderBlogContent);
+    // 页面加载完成后渲染下载页面
+    document.addEventListener('DOMContentLoaded', renderDownloadPage);
   </script>
 </body>
 </html>

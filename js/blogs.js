@@ -11,7 +11,7 @@ const blogs = [
     subtitle: "统计物理的相变内容，部分数学推导已略去",
     category: "物理",
     date: "2025年5月",
-    file: "blog2.md"
+    file: "相变.md"
   },
   {
     title: "理论力学2：诺特定理与对称性",
