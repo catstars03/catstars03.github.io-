@@ -29,13 +29,7 @@
             border-radius: 0.5rem;
             box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.1);
             margin-bottom: 2rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
             border: 1px solid rgba(0, 0, 0, 0.125);
-        }
-
-        .note-card:hover {
-            transform: translateY(-0.25rem);
-            box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.15);
         }
 
         .note-header {
@@ -72,11 +66,6 @@
             right: 1.5rem;
             font-size: 1.2rem;
             color: #6c757d;
-            transition: transform 0.3s ease;
-        }
-
-        .toggle-icon.rotated {
-            transform: rotate(180deg);
         }
 
         .note-content {
@@ -126,7 +115,6 @@
             background-color: #3c74ee;
             color: white;
             text-decoration: none;
-            transition: background-color 0.2s ease;
             border: none;
             cursor: pointer;
         }
@@ -165,7 +153,6 @@
             color: #495057;
             border-radius: 1rem;
             cursor: pointer;
-            transition: all 0.2s ease;
         }
 
         .tag:hover {
@@ -266,7 +253,30 @@
                 
                 <div class="container-fluid">
                     <div class="notes-container" id="notesContainer">
-                        <!-- 笔记卡片将由JavaScript动态生成 -->
+                        <!-- 示例卡片，用于测试显示效果 -->
+                        <div class="note-card">
+                            <div class="note-header">
+                                <h3 class="note-title">示例笔记标题</h3>
+                                <div class="note-subtitle">示例笔记副标题</div>
+                                <div class="note-meta">2023-01-01</div>
+                                <div class="toggle-icon">▼</div>
+                            </div>
+                            <div class="note-content">
+                                <p>这是示例笔记的内容部分。在GitHub Pages上应该能看到带有圆角和阴影的卡片效果。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="note-card">
+                            <div class="note-header">
+                                <h3 class="note-title">第二个示例笔记</h3>
+                                <div class="note-subtitle">另一个副标题</div>
+                                <div class="note-meta">2023-01-02</div>
+                                <div class="toggle-icon">▼</div>
+                            </div>
+                            <div class="note-content">
+                                <p>这是第二个示例笔记的内容部分，用于验证卡片样式是否正常显示。</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
