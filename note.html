@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Catstars 笔记详情">
+    <meta name="author" content="Catstars">
+    <title>笔记详情 - Catstars</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="vendor/devicons/css/devicons.min.css" rel="stylesheet">
+    <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Custom styles -->
+    <link href="css/resume.css" rel="stylesheet">
+    <link href="css/notes.css" rel="stylesheet">
+</head>
+
+<body id="page-top">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+        <a class="navbar-brand js-scroll-trigger" href="index.html">
+            <span class="d-block d-lg-none">Catstars</span>
+            <span class="d-none d-lg-block">
+                <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="img/avatar.jpg" alt="">
+            </span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" 
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="index.html#about">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="index.html#experience">Note</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="index.html#education">Article</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="index.html#skills">Blog</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="index.html#interests">Interest</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="index.html#awards">敬请期待</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Notes Detail Section -->
+    <div class="container-fluid p-0">
+        <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="notes-detail">
+            <div class="my-auto">
+                <div class="back-link mb-4">
+                    <a href="index.html#experience" class="text-primary">
+                        <i class="fas fa-arrow-left"></i> 返回笔记列表
+                    </a>
+                </div>
+                
+                <h2 class="mb-0">详细
+                    <span class="text-primary">笔记</span>
+                </h2>
+                <div class="subheading mb-5">点击笔记查看详细内容和下载</div>
+                
+                <!-- 标签筛选 -->
+                <div class="filter-tags" id="filterTags">
+                    <span class="tag active" data-category="all">全部笔记</span>
+                    <!-- 标签将由JavaScript动态生成 -->
+                </div>
+                
+                <div class="container-fluid">
+                    <div class="notes-container" id="notesContainer">
+                        <!-- 笔记卡片将由JavaScript动态生成 -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="js/resume.min.js"></script>
+    <script src="js/notes.js"></script>
+    <script src="js/notetag.js"></script>
+</body>
+</html>
